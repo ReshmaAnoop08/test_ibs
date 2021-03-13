@@ -1,0 +1,67 @@
+{% load static%}
+<html>
+<head>
+  <!-- custom js -->
+  <script src="{% static 'main.js' %}" defer></script>
+  <style>
+      ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+     th, td {
+       padding: 5px;
+     }
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    .checked {
+      color: orange;
+      }
+      .my-btn {
+      background-color: inherit !important;
+      border: 0 !important;
+  }
+    </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+  <ul>
+    <li><a href="{% url 'movie_list'  %}" >MOVIE_LIST</a></li>
+  </ul>
+
+<h1>Add Movie rating</h1>
+{%if movie_obj%}
+<table>
+  <form class="rate-form" action="" method="POST" id="{{movie_obj.id}}">
+  {% csrf_token %}
+  <tr>
+    <td><label for="mrating">Add Movie-Rating*:</label></td>
+    <td>  <!-- Add icon library -->
+
+      <button type="submit" class="fa fa-star fa-3x my-btn checked" id="first"></button>
+      <button type="submit" class="fa fa-star fa-3x my-btn checked" id="second"></button>
+      <button type="submit" class="fa fa-star fa-3x my-btn checked" id="third"></button>
+      <button type="submit" class="fa fa-star fa-3x my-btn checked" id="fourth"></button>
+      <button type="submit" class="fa fa-star fa-3x my-btn checked" id="fifth"></button>
+    </td>
+  </tr>
+</form>
+</table>
+{%endif%}
+</body>
+</html>

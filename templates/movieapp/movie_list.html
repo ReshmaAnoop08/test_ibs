@@ -1,0 +1,74 @@
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="{% url 'movie_list'  %}" >MOVIE_LIST</a></li>
+  <li><a href="{% url 'add_movie' %}">ADD_MOVIES</a></li>
+  <li><a href="">GRAPH</a></li>
+
+
+</ul>
+<h2>LIST OF MOVIES</h2>
+{% if movie_obj%}
+
+<table>
+  <tr>
+    <th>Movie-Name</th>
+    <th>Movie-Genre</th>
+    <th>Movie-Studio</th>
+    <th>Movie-Director</th>
+    <th>Movie-Cast</th>
+    <th>Box office collection</th>
+    <th>Movie-Release date</th>
+    <th>Movie-Rating</th>
+    <th>Actions</th>
+  </tr>
+  {% for each_obj in movie_obj%}
+  <tr>
+    <td>{{each_obj.movie_name}}</td>
+    <td>{{each_obj.movie_genre}}</td>
+    <td>{{each_obj.movie_studio}}</td>
+    <td>{{each_obj.movie_director}}</td>
+    <td>{{each_obj.Movie_cast}}</td>
+    <td>{{each_obj.box_office_collection}}</td>
+    <td>{{each_obj.release_date}}</td>
+    <td>{{each_obj.rating}}</td>
+    <td><ul>
+      <li><a href="{% url 'edit_movie' pk=each_obj.pk %}">Edit</a></li>
+      <li><a href="{% url 'delete_movie' pk=each_obj.pk %}">Delete</a></li>
+      <li><a href="{% url 'add_rating' %}">Add_rating</a></li>
+
+    </ul></td>
+  </tr>
+  {%endfor%}
+
+</table>
+{% else%}
+<h3>No movie details available Now</h3>
+{%endif%}
+</body>
+</html>
